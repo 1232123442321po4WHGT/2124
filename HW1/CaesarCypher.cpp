@@ -18,8 +18,7 @@ int main(){
     int rotate;
     vector<string> lines;
     vector<string> rev;
-
-    int rotate;
+    
     enc >> rotate;
     cout << rotate << endl;
     //Problem is here, trying to redefine rotate
