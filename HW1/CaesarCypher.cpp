@@ -21,7 +21,6 @@ int main(){
     
     enc >> rotate;
     cout << rotate << endl;
-    //Problem is here, trying to redefine rotate
 
     while (getline(enc, line)){
         lines.push_back(line);
