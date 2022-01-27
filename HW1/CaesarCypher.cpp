@@ -30,7 +30,7 @@ int main(){
         string curr = lines[i-1];
         for (char ind:curr){
             if (islower(ind)){
-
+                //Something that can be done here for values > 26 would be to use the mod operator!
             }
             //cout << ind << ' ';
         }
