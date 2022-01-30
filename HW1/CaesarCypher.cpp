@@ -20,7 +20,7 @@ int main(){
     vector<string> rev;
     
     enc >> rotate;
-    cout << rotate << endl;
+    //cout << rotate << endl;
 
     while (getline(enc, line)){
         lines.push_back(line);
@@ -31,11 +31,22 @@ int main(){
         for (char ind:curr){
             if (islower(ind)){
                 //Something that can be done here for values > 26 would be to use the mod operator!
+                //cout << "lower";
+                ind -= 5;
+                if (ind < 'a'){
+                    //cout << "less than";
+                    ind += 26;
+                    cout << ind;
+                } else{
+                    cout << ind;
+                }
+            } else{
+                cout << ind;
             }
             //cout << ind << ' ';
         }
         //rev.push_back(lines[i-1]);
-        cout << lines[i-1] << endl;
+        cout << endl;
     }
 
 }
