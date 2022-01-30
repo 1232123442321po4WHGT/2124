@@ -30,7 +30,6 @@ int main(){
         string curr = lines[i-1];
         for (char ind:curr){
             if (islower(ind)){
-                //Something that can be done here for values > 26 would be to use the mod operator!
                 //cout << "lower";
                 ind -= 5;
                 if (ind < 'a'){
@@ -43,9 +42,8 @@ int main(){
             } else{
                 cout << ind;
             }
-            //cout << ind << ' ';
+            
         }
-        //rev.push_back(lines[i-1]);
         cout << endl;
     }
 
