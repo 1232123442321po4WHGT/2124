@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <string>
 #include <fstream>
 using namespace std;
 
@@ -36,15 +35,13 @@ int main(){
                     //cout << "less than";
                     ind += 26;
                     cout << ind;
-                } else{
+                }else{
                     cout << ind;
                 }
-            } else{
+            }else{
                 cout << ind;
             }
-            
         }
         cout << endl;
     }
-
 }
