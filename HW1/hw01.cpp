@@ -16,7 +16,6 @@ int main(){
     string ind;
     int rotate;
     vector<string> lines;
-    vector<string> rev;
     
     enc >> rotate;
     //cout << rotate << endl;
