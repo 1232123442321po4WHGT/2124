@@ -10,7 +10,8 @@ void stringDecrypt (string& line, int rotate);
 int main(){
     ifstream enc("encrypted.txt");
 
-    if (!enc){
+    if (!enc)
+    {
         cerr << "failed to open encrypted.txt";
         exit(1);
     }
@@ -22,11 +23,13 @@ int main(){
     
     enc >> rotate;
 
-    while (getline(enc, line)){
+    while (getline(enc, line))
+    {
         lines.push_back(line);
     }
 
-    for (size_t i = lines.size(); i > 0; --i){
+    for (size_t i = lines.size(); i > 0; --i)
+    {
         string curr = lines[i-1];
         stringDecrypt(curr, rotate);
         cout << curr << endl;
@@ -37,7 +40,8 @@ int main(){
 char decrypt(char& curr_key, int rotate){
     curr_key -= rotate;
 
-    if (curr_key < 'a'){
+    if (curr_key < 'a')
+    {
         curr_key += 26;
     } else{}
     return curr_key;
@@ -46,9 +50,9 @@ char decrypt(char& curr_key, int rotate){
 void stringDecrypt(string& line, int rotate){
     for (size_t i = 0; i < line.size(); i++)
     {
-        if (line[i] > 'a' && line[i] < 'z'){
+        if (line[i] > 'a' && line[i] < 'z')
+        {
             line[i] = decrypt(line[i], rotate);
         } 
     }
-    
 }
