@@ -26,8 +26,8 @@ int main(){
     }
     
     for (size_t i = lines.size(); i > 0; --i){
-        string curr = lines[i-1];
-        for (char ind:curr){
+        string &curr = lines[i-1];
+        for (char &ind:curr){
             if (islower(ind)){
                 //cout << "lower";
                 ind -= rotate;
@@ -35,18 +35,20 @@ int main(){
                 if (ind < 'a'){
                     //cout << "less than";
                     ind += 26;
-                    cout << ind;
+
+                    //cout << ind;
                     //If you rotate to a value below a, you loop back up to z and go from there
                 }else{
                     //If it doesn't need to loop back then print as usual
-                    cout << ind;
+                    //cout << ind;
                 }
             }else{
                 //Printing all non lowercase characters
-                cout << ind;
+                //cout << ind;
             }
         }
         //Creating a new line every time you finish decoding and printing out the line
-        cout << endl;
+        cout << curr << endl;
+        //cout << endl;
     }
 }
