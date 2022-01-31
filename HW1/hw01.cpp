@@ -50,7 +50,7 @@ char decrypt(char& curr_key, int rotate){
 void stringDecrypt(string& line, int rotate){
     for (size_t i = 0; i < line.size(); i++)
     {
-        if (line[i] > 'a' && line[i] < 'z')
+        if (line[i] >= 'a' && line[i] <= 'z')
         {
             line[i] = decrypt(line[i], rotate);
         } 
