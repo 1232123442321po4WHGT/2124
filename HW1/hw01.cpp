@@ -26,7 +26,7 @@ int main(){
     }
     
     for (size_t i = lines.size(); i > 0; --i){
-        string &curr = lines[i-1];
+        string curr = lines[i-1];
         for (char &ind:curr){
             if (islower(ind)){
                 //cout << "lower";
