@@ -18,7 +18,6 @@ int main(){
     vector<string> lines;
     
     enc >> rotate;
-    //cout << rotate << endl;
 
     while (getline(enc, line)){
         lines.push_back(line);
