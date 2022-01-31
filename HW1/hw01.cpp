@@ -50,4 +50,5 @@ int main(){
         cout << curr << endl;
         //cout << endl;
     }
+    enc.close();
 }
