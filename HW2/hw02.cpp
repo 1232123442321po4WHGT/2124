@@ -19,7 +19,7 @@ struct Warrior{
 void openfile (ifstream& ifs);
 void streamToVec (vector<Warrior>& warriors, ifstream& ifs);
 void addWarrior (vector<Warrior>& warriors, ifstream& ifs, string name, int strength);
-void displayStatus (vector<Warrior>& warriors);
+void displayStatus (const vector<Warrior>& warriors);
 
 
 int main(){
@@ -29,6 +29,7 @@ int main(){
     
     openfile(ifs);
     streamToVec(warriors, ifs);
+    //displayStatus(warriors);
 }
 
 void openfile(ifstream& ifs){
@@ -80,6 +81,12 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
 
             //addWarrior(warriors, ifs);
         }
+        else if (type == "Status"){
+            displayStatus(warriors);
+        }
+        else if (type == "Battle"){
+            
+        }
         
         /*
         else if (type == "Status"){
@@ -106,12 +113,12 @@ void addWarrior(vector<Warrior>& warriors, ifstream& ifs, string name, int stren
         currWar_.name = name;
         currWar_.strength = strength;
     }*/
+    warriors.push_back(currWar_);
 
 }
 
-void displayStatus(vector<Warrior>& warriors){
+void displayStatus(const vector<Warrior>& warriors){
     for(size_t i = 0; i < warriors.size(); ++i){
-        cout << "this" << endl;
         cout << warriors[i].name << warriors[i].strength << endl;
     }
 }
