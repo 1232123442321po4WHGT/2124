@@ -20,7 +20,7 @@ struct Warrior{
 //prototypes
 void openfile (ifstream& ifs);
 void streamToVec (vector<Warrior>& warriors, ifstream& ifs);
-void addWarrior (vector<Warrior>& warriors, string name, int strength);
+void addWarrior (vector<Warrior>& warriors,const string name,const int strength);
 size_t find(const vector<Warrior>& warriors, const string name);
 void battle(vector<Warrior>& warriors, const string name1, const string name2);
 void displayStatus (const vector<Warrior>& warriors);
@@ -68,7 +68,7 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
 }
 
 //function to add a warrior object to the vector
-void addWarrior(vector<Warrior>& warriors, string name, int strength){
+void addWarrior(vector<Warrior>& warriors,const string name,const int strength){
     Warrior currWar_;
     size_t found = find(warriors, name);
 
