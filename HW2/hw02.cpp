@@ -100,35 +100,43 @@ void battle(vector<Warrior>& warriors, const string name1, const string name2){
         cout << "At least one of these warriors doesn't exist" << endl;
     }
     else if(warriors[warr1].strength == 0 && warriors[warr2].strength == 0){
-        cout << warriors[warr1].name << " battles " << warriors[warr2].name << endl;
+        cout << warriors[warr1].name << " battles ";
+        cout << warriors[warr2].name << endl;
         cout << "Oh No they're both dead! Yuck!" << endl;
     }
     else if (warriors[warr1].strength == warriors[warr2].strength ){
-        cout << warriors[warr1].name << " battles " << warriors[warr2].name << endl;
+        cout << warriors[warr1].name << " battles ";
+        cout << warriors[warr2].name << endl;
         warriors[warr1].strength = 0;
         warriors[warr2].strength = 0;
         cout << "Mutual Annihilation: " << warriors[warr1].name << " and ";
         cout << warriors[warr2].name << " die at each other's hands." << endl;
     }
     else if (warriors[warr1].strength == 0 && warriors[warr2].strength != 0){
-        cout << warriors[warr1].name << " battles " << warriors[warr2].name << endl;
+        cout << warriors[warr1].name << " battles ";
+        cout << warriors[warr2].name << endl;
         cout << "He's dead, " << warriors[warr2].name << endl;
     }
     else if (warriors[warr2].strength == 0 && warriors[warr1].strength != 0){
-        cout << warriors[warr1].name << " battles " << warriors[warr2].name << endl;
+        cout << warriors[warr1].name << " battles ";
+        cout << warriors[warr2].name << endl;
         cout << "He's dead, " << warriors[warr1].name << endl;
     }
     else if (warriors[warr1].strength > warriors[warr2].strength){
-        cout << warriors[warr1].name << " battles " << warriors[warr2].name << endl;
+        cout << warriors[warr1].name << " battles ";
+        cout << warriors[warr2].name << endl;
         warriors[warr1].strength -= warriors[warr2].strength;
         warriors[warr2].strength = 0;
-        cout << warriors[warr1].name << " defeats " << warriors[warr2].name << "!" << endl;
+        cout << warriors[warr1].name << " defeats ";;
+        cout << warriors[warr2].name << "!" << endl;
     }
     else if (warriors[warr1].strength < warriors[warr2].strength){
-        cout << warriors[warr1].name << " battles " << warriors[warr2].name << endl;
+        cout << warriors[warr1].name << " battles ";
+        cout << warriors[warr2].name << endl;
         warriors[warr2].strength -= warriors[warr1].strength;
         warriors[warr1].strength = 0;
-        cout << warriors[warr2].name << " defeats " << warriors[warr1].name << "!" << endl;
+        cout << warriors[warr2].name << " defeats ";
+        cout << warriors[warr1].name << "!" << endl;
     }
 }
 
