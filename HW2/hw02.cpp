@@ -20,6 +20,7 @@ void openfile (ifstream& ifs);
 void streamToVec (vector<Warrior>& warriors, ifstream& ifs);
 void addWarrior (vector<Warrior>& warriors, ifstream& ifs, string name, int strength);
 void displayStatus (const vector<Warrior>& warriors);
+int find(const vector<Warrior>& warriors, const string name);
 
 
 int main(){
@@ -101,24 +102,36 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
 
 void addWarrior(vector<Warrior>& warriors, ifstream& ifs, string name, int strength){
     Warrior currWar_;
-    /*
-    string name;
-    int strength;
-    */
+    size_t found = find(warriors, name);
 
-    currWar_.name = name;
-    currWar_.strength = strength;
+    if (found == warriors.size()){
+        currWar_.name = name;
+        currWar_.strength = strength;
+        warriors.push_back(currWar_);
+    } else{
+        cout << "There's already a warrior with that name" << endl;
+    }
     /*
     while(ifs >> name >> strength){
         currWar_.name = name;
         currWar_.strength = strength;
     }*/
-    warriors.push_back(currWar_);
 
+}
+
+int find(const vector<Warrior>& warriors, const string name){
+        //cout << "find" << endl;
+    for (size_t i = 0; i < warriors.size(); ++i){
+        if (warriors[i].name == name){
+            return i;
+        }
+    }
+    return warriors.size();
 }
 
 void displayStatus(const vector<Warrior>& warriors){
     for(size_t i = 0; i < warriors.size(); ++i){
-        cout << warriors[i].name << warriors[i].strength << endl;
+        cout << "Warrior: " << warriors[i].name << ", ";
+        cout << "Strength: " << warriors[i].strength << endl;
     }
 }
