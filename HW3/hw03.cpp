@@ -69,8 +69,8 @@ class Warrior{
         else if (strength1 == strength2){
             cout << "Mutual annihilation: " << _name << " and ";
             cout << warr.getName() << " die at each other's hands" << endl;
-            strength1 = 0;
-            strength2 = 0;
+            warr._weapon.set_strength(0);
+            _weapon.set_strength(0);
         }
         //setters
         else if (strength1 == 0 && strength2 != 0){
@@ -80,21 +80,14 @@ class Warrior{
             cout << "He's dead, " << _name << "." << endl;
         }
         else if (strength1 > strength2){
-            cout << _name << " defeats " << warr.getName() << "!" << endl;
-<<<<<<< HEAD
-            //strength1 -= strength2;
-            //strength2 = 0; 
+            cout << _name << " defeats " << warr.getName() << "!" << endl; 
             _weapon.set_strength(strength1 - strength2);
             warr._weapon.set_strength(0);
-=======
-            strength1 -= strength2;
-            strength2 = 0;
->>>>>>> 720fa55307f814ab8e61b870c86432223bb5d9e4
         }
         else if (strength2 > strength1){
             cout << warr.getName() << " defeats " << _name << "!" << endl;
-            strength2 -= strength1;
-            strength1 = 0;
+            warr._weapon.set_strength(strength2 - strength1);
+            _weapon.set_strength(0);
         }
     }
 
