@@ -2,6 +2,7 @@
 // This progam is an extension of the second homework
 // adding weapons this time around and using classes
 
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,16 +10,12 @@
 #include <fstream>
 using namespace std;
 
-void fileOpen (ifstream& ifs);
-void streamToVec (vector<Warrior>& warriors, ifstream& ifs);
-size_t find (vector<Warrior> warriors, const string name);
-Warrior& findWarrObj (vector<Warrior> warriors, const string name);
-
 class Warrior{
 
     //BE CAREFUL ABOUT THIS PART, NEEDS CHANGE PROBABLY
     friend ostream& operator <<(ostream& os, Warrior rhs){
-        cout << rhs._name << rhs._weapon.get_name() << rhs._weapon.get_strength();
+        cout << "Warrior: " << rhs._name << ", weapon: ";
+        cout << rhs._weapon.get_name() << ", " << rhs._weapon.get_strength();
         return os;
     }
     public:
@@ -106,6 +103,12 @@ ostream& operator<< (ostream& os, Warrior& lhs){
 }
 */
 
+void fileOpen (ifstream& ifs);
+void streamToVec (vector<Warrior>& warriors, ifstream& ifs);
+size_t find (vector<Warrior>& warriors, const string name);
+Warrior& findWarrObj (vector<Warrior>& warriors, const string name);
+
+
 int main(){
     ifstream ifs;
     vector<Warrior> warriors;
@@ -141,9 +144,9 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
             }
         }
         else if (type == "Status"){
-            cout << "There are: " << warriors.size() << "warriors" << endl;
+            cout << "There are: " << warriors.size() << " warriors" << endl;
             for (size_t i = 0; i < warriors.size(); ++i){
-                cout << warriors[i];
+                cout << warriors[i] << endl;
             }
         }
         else if (type == "Battle"){
@@ -166,7 +169,7 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
     }
 }
 
-size_t find(vector<Warrior> warriors, const string name){
+size_t find(vector<Warrior>& warriors, const string name){
     for (size_t i = 0; i < warriors.size(); ++i){
         if (warriors[i].getName() == name){
             return i;
@@ -176,7 +179,7 @@ size_t find(vector<Warrior> warriors, const string name){
 }
 
 //Hold on, am I returning a copy or the original?
-Warrior& findWarrObj(vector<Warrior> warriors, const string name){
+Warrior& findWarrObj(vector<Warrior>& warriors, const string name){
     for (size_t i = 0; i < warriors.size(); ++i){
         if (warriors[i].getName() == name){
             return warriors[i];
