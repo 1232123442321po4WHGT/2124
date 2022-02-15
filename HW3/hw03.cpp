@@ -68,8 +68,12 @@ class Warrior{
         else if (strength1 == strength2){
             cout << "Mutual annihilation: " << _name << " and ";
             cout << warr.getName() << " die at each other's hands" << endl;
-            strength1 = 0;
-            strength2 = 0;
+            //strength1 = 0;
+            //strength2 = 0;
+            //SETTERS!
+            warr._weapon.set_strength(0);
+            _weapon.set_strength(0);
+
         }
         else if (strength1 == 0 && strength2 != 0){
             cout << "He's dead, " << warr.getName() << "." << endl;
@@ -79,13 +83,17 @@ class Warrior{
         }
         else if (strength1 > strength2){
             cout << _name << " defeats " << warr.getName() << "!" << endl;
-            strength1 -= strength2;
-            strength2 = 0;
+            //strength1 -= strength2;
+            //strength2 = 0;
+            _weapon.set_strength(strength1 - strength2);
+            warr._weapon.set_strength(0);
         }
         else if (strength2 > strength1){
             cout << warr.getName() << " defeats " << _name << "!" << endl;
-            strength2 -= strength1;
-            strength1 = 0;
+            //strength2 -= strength1;
+            //strength1 = 0;
+            warr._weapon.set_strength(strength2 - strength1);
+            _weapon.set_strength(0);
         }
     }
 
@@ -154,15 +162,15 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
             //This gives the indexes of fighters
             idx = find(warriors, fighter1);
             idx1 = find(warriors, fighter2);
-            //this gives the actual warrior objects
-            warr1 = findWarrObj(warriors, fighter1);
-            warr2 = findWarrObj(warriors, fighter2);
-            //I know I could just do warriors[idx] but I like it this way
 
             if (idx == warriors.size() || idx1 == warriors.size()){
                 cout << "At least one of these warriors don't exist!" << endl;
             }
             else{
+                //This gives the actual warrior objects
+                warr1 = findWarrObj(warriors, fighter1);
+                warr2 = findWarrObj(warriors, fighter2);
+                //I know I could just do warriors[idx] but I like it this way
                 warr1.battle(warr2);
             }
         }
