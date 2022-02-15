@@ -2,7 +2,6 @@
 // This progam is an extension of the second homework
 // adding weapons this time around and using classes
 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,16 +9,17 @@
 #include <fstream>
 using namespace std;
 
+//Warrior class, with the weapon class being nested in it
 class Warrior{
 
-    //BE CAREFUL ABOUT THIS PART, NEEDS CHANGE PROBABLY
+    //output override
     friend ostream& operator <<(ostream& os, Warrior rhs){
         cout << "Warrior: " << rhs._name << ", weapon: ";
         cout << rhs._weapon.get_name() << ", " << rhs._weapon.get_strength();
         return os;
     }
     public:
-    
+    //Weapon class
     class Weap_class{
         friend ostream& operator<< (ostream& os, const Weap_class& inside);
 
@@ -27,8 +27,6 @@ class Warrior{
         Weap_class(){}
         Weap_class(const string& weap_name, int& weap_strengh):
         wname(weap_name), wstrength(weap_strengh){}
-
-        //getters for weapon stats
 
         string get_name(){
             return wname;
@@ -42,6 +40,7 @@ class Warrior{
             wstrength = s;
         }
 
+        //Private variables, inaccessable to the outside
         private:
         string wname;
         int wstrength;
@@ -50,12 +49,14 @@ class Warrior{
 
     Warrior(){}
     Warrior(const string& the_name, const string& the_weapon_name, 
-    int the_strength): _name(the_name), _weapon(the_weapon_name, the_strength){}
+    int the_strength): _name(the_name), 
+    _weapon(the_weapon_name, the_strength){}
 
     string getName(){
         return _name;
     }
 
+    //battle function, all cases are handled here and sttrengths are updated
     void battle(Warrior& warr){
         Warrior warr1, warr2;
         cout << _name << " battles " << warr.getName() << endl;
@@ -96,18 +97,12 @@ class Warrior{
     Weap_class _weapon;
 };
 
-// Something wrong here
-/*
-ostream& operator<< (ostream& os, Warrior& lhs){
 
-}
-*/
-
+//Function prototypes
 void fileOpen (ifstream& ifs);
 void streamToVec (vector<Warrior>& warriors, ifstream& ifs);
 size_t find (vector<Warrior>& warriors, const string name);
 Warrior& findWarrObj (vector<Warrior>& warriors, const string name);
-
 
 int main(){
     ifstream ifs;
@@ -118,12 +113,16 @@ int main(){
     ifs.close();
 }
 
+//Opens the file, checks if it is there
 void fileOpen(ifstream& ifs){
-    do{
-        ifs.open("warriors.txt");
-    } while (!ifs);
+    ifs.open("warriors.txt");
+    if (!ifs){
+        cout << "File not found" << endl;
+    }
 }
 
+//Putting the filestream into the vector, and calling the proper 
+//functions to handle what comes after
 void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
     Warrior currWar;
     string type, name, weapon, fighter1, fighter2;
@@ -168,6 +167,7 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
     }
 }
 
+//Finds the index of the object
 size_t find(vector<Warrior>& warriors, const string name){
     for (size_t i = 0; i < warriors.size(); ++i){
         if (warriors[i].getName() == name){
@@ -177,7 +177,7 @@ size_t find(vector<Warrior>& warriors, const string name){
     return warriors.size();
 }
 
-//Hold on, am I returning a copy or the original?
+//Finds the actual reference object, because we want to change it in battle
 Warrior& findWarrObj(vector<Warrior>& warriors, const string name){
     for (size_t i = 0; i < warriors.size(); ++i){
         if (warriors[i].getName() == name){
