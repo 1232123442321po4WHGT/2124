@@ -83,10 +83,7 @@ class Warrior{
         }
         else if (strength1 > strength2){
             cout << _name << " defeats " << warr.getName() << "!" << endl;
-            //strength1 -= strength2;
-            //strength2 = 0;
-            _weapon.set_strength(strength1 - strength2);
-            warr._weapon.set_strength(0);
+            strength1 -= strength2;
         }
         else if (strength2 > strength1){
             cout << warr.getName() << " defeats " << _name << "!" << endl;
