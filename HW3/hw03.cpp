@@ -38,7 +38,7 @@ class Warrior{
             return wstrength;
         }
 
-        void set_strength(int s){
+        void set_strength(const int& s){
             wstrength = s;
         }
 
@@ -94,8 +94,6 @@ class Warrior{
     private:
     string _name;
     Weap_class _weapon;
-
-
 };
 
 // Something wrong here
@@ -127,7 +125,7 @@ void fileOpen(ifstream& ifs){
 }
 
 void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
-    Warrior currWar, warr1, warr2;
+    Warrior currWar;
     string type, name, weapon, fighter1, fighter2;
     size_t idx, idx1;
     int strength;
@@ -157,14 +155,13 @@ void streamToVec(vector<Warrior>& warriors, ifstream& ifs){
             idx = find(warriors, fighter1);
             idx1 = find(warriors, fighter2);
             //this gives the actual warrior objects
-            warr1 = findWarrObj(warriors, fighter1);
-            warr2 = findWarrObj(warriors, fighter2);
-            //I know I could just do warriors[idx] but I like it this way
-
             if (idx == warriors.size() || idx1 == warriors.size()){
                 cout << "At least one of these warriors don't exist!" << endl;
             }
             else{
+                Warrior& warr1 = findWarrObj(warriors, fighter1);
+                Warrior& warr2 = findWarrObj(warriors, fighter2);
+                //I know I could just do warriors[idx] but I like it this way
                 warr1.battle(warr2);
             }
         }
@@ -187,4 +184,6 @@ Warrior& findWarrObj(vector<Warrior>& warriors, const string name){
             return warriors[i];
         }
     }
+    cout << "the object can't be found" << endl;
+    return warriors[0];
 }
