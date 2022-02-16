@@ -18,8 +18,9 @@ class Warrior{
         cout << rhs._weapon.get_name() << ", " << rhs._weapon.get_strength();
         return os;
     }
-    public:
-    //Weapon class
+
+    private:
+    //Weapon class, private
     class Weap_class{
         friend ostream& operator<< (ostream& os, const Weap_class& inside);
 
@@ -47,6 +48,11 @@ class Warrior{
 
     };
 
+    string _name;
+    Weap_class _weapon;
+
+    public:
+    //Weapon class
     Warrior(){}
     Warrior(const string& the_name, const string& the_weapon_name, 
     int the_strength): _name(the_name), 
@@ -91,10 +97,6 @@ class Warrior{
             _weapon.set_strength(0);
         }
     }
-
-    private:
-    string _name;
-    Weap_class _weapon;
 };
 
 
