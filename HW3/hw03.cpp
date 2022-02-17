@@ -64,7 +64,6 @@ class Warrior{
 
     //battle function, all cases are handled here and sttrengths are updated
     void battle(Warrior& warr){
-        Warrior warr1, warr2;
         cout << _name << " battles " << warr.getName() << endl;
         int strength1, strength2;
         strength1 = _weapon.get_strength();
