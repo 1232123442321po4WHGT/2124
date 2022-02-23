@@ -28,7 +28,7 @@ class Warrior{
         return _strength;
     }
 
-    void setStrength(double ratio){
+    void setStrength(const double ratio){
         double alive_meter = 1-ratio;
         _strength = (alive_meter) * _strength;
     }
@@ -130,7 +130,7 @@ class Noble{
         return _army.size();
     }
 
-    double get_army_strength(){
+    double get_army_strength (){
         double total = 0;
         for (Warrior* warr: _army){
             total += warr->getStrength();
@@ -138,7 +138,7 @@ class Noble{
         return total;
     }
 
-    void set_army_strength(double ratio){
+    void set_army_strength(const double ratio){
         for (Warrior* warr: _army){
             warr->setStrength(ratio);
         }
