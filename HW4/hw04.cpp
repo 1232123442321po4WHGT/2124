@@ -81,7 +81,7 @@ class Noble{
 
     bool hire(Warrior& warr){
         if (alive == false){
-            cout << "This warrior is dead, cannot be hired" << endl;
+            cout << "This noble is dead, cannot hire anyone" << endl;
             return false;
         }
         else if (warr.employed() == true){
