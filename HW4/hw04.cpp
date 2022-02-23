@@ -115,7 +115,6 @@ class Noble{
                 _army[swap] = _army[swap+1];
             }
             _army.pop_back();
-            //fired.setNoble(nullptr);
             return true;
         }
     }
