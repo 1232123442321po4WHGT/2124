@@ -11,7 +11,7 @@ using namespace std;
 
 //Class prototypes
 class Noble;
-class Warrior;
+//class Warrior;
 
 class Warrior{
     friend ostream& operator<<(ostream& os, const Warrior& warrior){
@@ -21,7 +21,7 @@ class Warrior{
 
     public:
     Warrior (const string& name, double strength): 
-    _name(name), _strength(strength), _nbl(nullptr) {}
+    _name(name), _strength(strength), _hired(false), _warr(nullptr) {}
 
     const string& getName() const{
         return _name;
@@ -31,28 +31,23 @@ class Warrior{
         return _strength;
     }
 
-    Noble* getNoble() const {
-        return _nbl;
-    }
-
     void setStrength(double ratio){
         double alive_meter = 1-ratio;
         _strength = (alive_meter) * _strength;
     }
 
-    void setNoble(Noble* newNbl){
-        _nbl = newNbl;
+    void hiring(){
+        _hired = true;
     }
 
-    bool hired() {
-        if (_nbl == nullptr){
-            return false;
-        }
-        return true;
+    bool employed(){
+        return _hired;
     }
 
     private:
+    bool _hired;
     Noble* _nbl;
+    Warrior* _warr;
     string _name;
     double _strength;
 };
@@ -88,26 +83,32 @@ class Noble{
         return false;
     }
 
-    void hire(Warrior& warr){
+    bool hire(Warrior& warr){
         if (alive == false){
             cout << "This warrior is dead, cannot be hired" << endl;
+            return false;
         }
-        else if (warr.hired() == true){
+        else if (warr.employed() == true){
             cout << "This warrior has already been hired" << endl;
+            return false;
         }
         else{
-            warr.setNoble(this);
+            //warr.setNoble(this);
             _army.push_back(&warr);
+            warr.hiring();
+            return true;
         }
     }
 
-    void fire(Warrior& fired){
+    bool fire(Warrior& fired){
         size_t idx;
         if (alive == false){
             cout << "This noble is dead, cannot fire a dead warrior" << endl;
+            return false;
         }
-        else if (fired.getNoble() != this){
-            cout << "This warrior is not under the noble!" << endl;
+        else if (fired.employed() == false){
+            cout << "This warrior is already unemployed" << endl;
+            return false;
         }
         else{
             idx = find(fired);
@@ -118,7 +119,8 @@ class Noble{
                 _army[swap] = _army[swap+1];
             }
             _army.pop_back();
-            fired.setNoble(nullptr);
+            //fired.setNoble(nullptr);
+            return true;
         }
     }
 
@@ -193,6 +195,7 @@ class Noble{
     string _name;
     vector<Warrior*> _army;
     bool alive;
+    Warrior* _warr;
 };
 
 
