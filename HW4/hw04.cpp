@@ -9,10 +9,6 @@
 #include <fstream>
 using namespace std;
 
-//Class prototypes
-class Noble;
-//class Warrior;
-
 class Warrior{
     friend ostream& operator<<(ostream& os, const Warrior& warrior){
         os << "     " << warrior._name << ": " << warrior._strength << endl;
@@ -21,6 +17,7 @@ class Warrior{
 
     public:
     Warrior (const string& name, double strength): 
+    //I want to add a boolean _hired to check whether a warrior is hired or not
     _name(name), _strength(strength), _hired(false), _warr(nullptr) {}
 
     const string& getName() const{
@@ -46,7 +43,6 @@ class Warrior{
 
     private:
     bool _hired;
-    Noble* _nbl;
     Warrior* _warr;
     string _name;
     double _strength;
@@ -149,6 +145,9 @@ class Noble{
     }
 
     void battle(Noble& enemy){
+        //variables to compare strength of a noble's army
+        //note that ratio is 'inverse', meaning that I have to 
+        //do 1-ratio in order to get the actual scale of remaining strength
         double yourStrength = get_army_strength();
         double enemyStrength = enemy.get_army_strength();
         double ratio;
