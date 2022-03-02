@@ -152,11 +152,8 @@ void dispNbl (const vector<Noble*> nbllist);
 
 int main(){
     ifstream ifs;
-    //continue adding variable declarations here
     fileOpen(ifs);
     streamToVec(ifs);
-
-
 }
 
 void fileOpen(ifstream& ifs){
