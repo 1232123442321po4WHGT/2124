@@ -36,6 +36,9 @@ class Warrior{
     void hiring(){
         employed = true;
     }
+    void firing(){
+        employed = false;
+    }
 
     private:
     bool employed;
@@ -74,23 +77,23 @@ class Noble{
     }
 
     void fire(Warrior* warr){
-        
         if (warr->employmentStatus() == false){
             cout << "This warrior is unemployed!" << endl;
         }
-        for (size_t i =0; i < warriors.size(); ++i){
-            if (warr->getName() == warriors[i]->getName()){
-                cout << "You don't work for my anymore " << warr->getName();
-                cout << "! --" << name << "." << endl;
-                for (size_t swap = i; swap < warriors.size(); ++i){
-                    warriors[swap] = warriors[swap + 1];
+        else{
+            for (size_t i = 0; i < warriors.size(); ++i){
+                if (warr->getName() == warriors[i]->getName()){
+                    cout << "You don't work for my anymore " << warr->getName();
+                    cout << "! --" << name << "." << endl;
+                    for (size_t swap = i; swap < warriors.size() - 1; ++swap){
+                        warriors[swap] = warriors[swap + 1];
+                    }
+                    total -= warr->getStrength();
+                    warriors.pop_back();
                 }
-                total -= warr->getStrength();
-                warriors.pop_back();
-                delete warr;
             }
         }
-        
+        warr->firing();
     }
 
     void battle(Noble& nbl){
@@ -172,14 +175,17 @@ void streamToVec(ifstream& ifs){
     Noble* nblp2;
     Warrior* warrp;
     while(ifs >> type){
-        cout << type;
+        //cout << type;
         if (type == "Warrior"){
             ifs >> warrName >> strength;
-            if (getWarr(warriors, warrName)->employmentStatus() == true){
+            if (getWarr(warriors, warrName) == nullptr){
+                warriors.push_back(new Warrior(warrName, strength));
+            }
+            else if (getWarr(warriors, warrName)->employmentStatus() == true){
                 cout << "This warrior is already employed!" << endl;
             }
             else{
-                warriors.push_back(new Warrior(warrName, strength));
+                cout << "Something went wrong" << endl;
             }
         }
         else if (type == "Noble"){
@@ -198,7 +204,11 @@ void streamToVec(ifstream& ifs){
             }
             else{
                 if (getWarr(warriors, warrName) == nullptr){
-                    cout << "The warrior does not exist." << endl;
+                    cout << "The warrior: " << warrName << " does not exist." << endl;
+                }
+                else if (getWarr(warriors, warrName)->employmentStatus() == true){
+                    cout << "Attempt to hire " << warrName << " by ";
+                    cout << nblName1 << " failed!" << endl;
                 }
                 else{
                     getNbl(nbllist, nblName1)->hire(getWarr(warriors, warrName));
@@ -236,6 +246,7 @@ void streamToVec(ifstream& ifs){
             cout << "Status" << endl;
             cout << "============" << endl;
             dispNbl(nbllist);
+            cout << endl;
             dispWarr(warriors);
         }
     }
@@ -273,8 +284,14 @@ void clearNbl(vector<Noble*> nbllist){
 }
 
 void dispWarr(const vector<Warrior*> warriors){
+    int unemployed = 0;
     cout << "Unemployed Warriors: " << endl;
-    if (warriors.size() == 0){
+    for (Warrior* warr : warriors){
+        if (warr->employmentStatus() == false){
+            unemployed += 1;
+        }
+    }
+    if (unemployed == 0){
         cout << "None" << endl;
     }
     else{
