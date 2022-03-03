@@ -323,7 +323,7 @@ void dispNbl(const vector<Noble*> nbllist){
     }
     else{
         for (size_t i = 0; i < nbllist.size(); ++i){
-            cout <<*nbllist[i] << endl;
+            cout << *nbllist[i] << endl;
         }
     }
 }
