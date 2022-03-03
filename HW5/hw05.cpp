@@ -189,15 +189,12 @@ void streamToVec(ifstream& ifs){
         if (type == "Warrior"){
             //this handles pushing back a warrior into the vector, handles duplicates
             ifs >> warrName >> strength;
-            if (getWarr(warriors, warrName) == nullptr){
+
+            if (getWarr(warriors, warrName) != nullptr){
+                cout << "This warrior already exists!" << endl;
+            }
+            else{
                 warriors.push_back(new Warrior(warrName, strength));
-            }
-            else if (getWarr(warriors, warrName)->employmentStatus() == true){
-                cout << "This warrior is already employed!" << endl;
-            }
-            else{ //this is unnessesary here but I chose to put it just in case
-            //something unexpected happens
-                cout << "Something went wrong" << endl;
             }
         }
         else if (type == "Noble"){
