@@ -8,14 +8,20 @@
 #include <fstream>
 using namespace std;
 
+//Warrior class: This is where object and method creation everything 
+//Related to warriors is 
 class Warrior{
+
     friend ostream& operator<<(ostream& os, const Warrior& warr){
         os << "     " << warr.name << ": " << warr.strength;
         return os;
     }
+
     public:
-    Warrior(const string& name, int strength) : name(name), strength(strength), employed(false){
-    }
+    Warrior(const string& name, int strength) : name(name), 
+    strength(strength), employed(false){}
+    //In order to check the status of whether a warrior is hired or not, 
+    //I'll be using a bool value of employed(bool) which I'll keep track of
 
     const string& getName() const {
         return name;
@@ -33,6 +39,8 @@ class Warrior{
         return employed;
     }
 
+    //the two setters: In hindsight I could've just done a setEmployment method
+    //that passes in a true/false
     void hiring(){
         employed = true;
     }
@@ -46,7 +54,9 @@ class Warrior{
     int strength;
 };
 
+//Noble class, everything related to noble + battle methods are in here
 class Noble{
+
     friend ostream& operator<<(ostream& os, const Noble& nbl){
         os << nbl.name << " has an army of " << nbl.warriors.size() << endl;
         for (size_t i = 0; i < nbl.warriors.size(); ++i){
@@ -139,7 +149,6 @@ class Noble{
     string name;
     vector<Warrior*> warriors;
     float total = 0; 
-
 };
 
 //function prototypes
@@ -152,13 +161,14 @@ void clearNbl (vector<Noble*> nbllist);
 void dispWarr (const vector<Warrior*> warriors);
 void dispNbl (const vector<Noble*> nbllist);
 
-
+//Main method
 int main(){
     ifstream ifs;
     fileOpen(ifs);
     streamToVec(ifs);
 }
 
+//Checks to see if file is openable or not and handles accordingly
 void fileOpen(ifstream& ifs){
     ifs.open("nobleWarriors.txt");
     if (!ifs){
@@ -166,6 +176,7 @@ void fileOpen(ifstream& ifs){
     }
 }
 
+//Reads from the file and delegates functions according to first word
 void streamToVec(ifstream& ifs){
     string type, warrName, nblName1, nblName2;
     vector<Warrior*> warriors;
@@ -173,10 +184,10 @@ void streamToVec(ifstream& ifs){
     int strength;
     Noble* nblp1;
     Noble* nblp2;
-    Warrior* warrp;
+
     while(ifs >> type){
-        //cout << type;
         if (type == "Warrior"){
+            //this handles pushing back a warrior into the vector, handles duplicates
             ifs >> warrName >> strength;
             if (getWarr(warriors, warrName) == nullptr){
                 warriors.push_back(new Warrior(warrName, strength));
@@ -184,7 +195,8 @@ void streamToVec(ifstream& ifs){
             else if (getWarr(warriors, warrName)->employmentStatus() == true){
                 cout << "This warrior is already employed!" << endl;
             }
-            else{
+            else{ //this is unnessesary here but I chose to put it just in case
+            //something unexpected happens
                 cout << "Something went wrong" << endl;
             }
         }
@@ -253,6 +265,7 @@ void streamToVec(ifstream& ifs){
 
 }
 
+//getWarr returns the pointer to the warrior object
 Warrior* getWarr(const vector<Warrior*>& warriors, const string& name){
     for (size_t i = 0; i < warriors.size(); ++i){
         if (name == warriors[i]->getName()){
@@ -262,6 +275,7 @@ Warrior* getWarr(const vector<Warrior*>& warriors, const string& name){
     return nullptr;
 }
 
+//getNbl returns the pointer to the noble object
 Noble* getNbl(const vector<Noble*>& nbllist, const string& name){
     for (size_t i = 0; i < nbllist.size(); ++i){
         if (name == nbllist[i]->getname()){
@@ -271,12 +285,14 @@ Noble* getNbl(const vector<Noble*>& nbllist, const string& name){
     return nullptr;
 }
 
+//This clears the entire vector of warriors
 void clearWarr(vector<Warrior*> warriors){
     for (size_t i = 0; i < warriors.size(); ++i){
         delete warriors[i];
     }
 }
 
+//This cleares the entire vector of nobles
 void clearNbl(vector<Noble*> nbllist){
     for (size_t i = 0; i < nbllist.size(); ++i){
         delete nbllist[i];
