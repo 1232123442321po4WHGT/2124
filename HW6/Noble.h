@@ -19,7 +19,6 @@ namespace WarriorCraft{
         bool isAlive() const;
         void killed();
         bool deleteWarr(Warrior& warrior);
-        bool findAWarrior(const string& name);// I  use this publicly
         bool hire(Warrior& warrior);
         bool fire(Warrior& warrior);
         void battle(Noble& noble);
@@ -28,7 +27,7 @@ namespace WarriorCraft{
         string name;
         double strength;
         bool alive;
-        vector<Warrior*> armyOfWarriors;
+        vector<Warrior*> army;
 
         void setStrengthVictor(Noble& winner, Noble& loser);
         void setStrengthLoser(Noble& noble);

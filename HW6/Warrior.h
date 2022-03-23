@@ -11,24 +11,26 @@ namespace WarriorCraft{
     class Warrior{
         friend ostream& operator<<(ostream& os, const Warrior& warrior);
     
-    public:
-    Warrior(const string& name, double strength);
-    void hiring();
-    void firing();
-    void killed();
-    void setStrength(double strength);
-    void runaway();
-    void setNoble(Noble* noble);
-    bool isHired() const;
-    const string& getName() const;
-    double getStrength() const;
+        public:
+        Warrior(const string& name, double strength);
 
-    private:
-    string name;
-    double strength;
-    bool employed;
-    bool isDead;
-    Noble* noble;
+        const string& getName() const;
+        double getStrength() const;
+        void setStrength(double strength);
+        void setNoble(Noble* noble);
+        bool isHired();
+        void hiring();
+        void firing();
+        void killed();
+        void runaway();
+
+        private:
+        Noble* noble;
+        string name;
+        double strength;
+        bool employed;
+        bool alive;
     };
 }
+
 #endif

@@ -1,6 +1,9 @@
 /*
- hw06-testcode.cpp
- 21 Fall
+hw06.cpp main function
+Alex Zhao 
+This is the seperate compilation file for splitting up the 
+warriors and nobles program. Same as before, battle and hire and fire
+and run away.
  */
 
 // Comment out these two includes for the single file solution
