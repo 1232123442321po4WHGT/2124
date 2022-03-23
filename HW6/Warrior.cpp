@@ -6,11 +6,16 @@ using namespace std;
 
 namespace WarriorCraft{
     Warrior::Warrior(const string& name, double strength): name(name), strength(strength), 
-        isHired(false), isDead(false), noble(nullptr){}
-    void Warrior::setIsHired(bool isHired){
-        this->isHired = isHired;
+        employed(false), isDead(false), noble(nullptr){}
+
+    void Warrior::hiring(){
+        this->employed = true;
     }
-    void Warrior::setIsDead(bool isDead){
+
+    void Warrior::firing(){
+        this->employed = false;
+    }
+    void Warrior::killed(){
         this->isDead = isDead;
     }
     void Warrior::setStrength(double strength){
@@ -20,11 +25,10 @@ namespace WarriorCraft{
         //Tarzan flees in terror, abandoning his lord, King Arthur
         cout << name << " flees in terror, abandoning his lord, ";
         cout << noble->getName() << endl; 
-        noble->deleteWarrior(*this); //because I deleted warrior here, set noble = null already
-        //has to print before this line
+        noble->deleteWarr(*this);
     }
-    bool Warrior::getIsHired() const {
-        return isHired;
+    bool Warrior::isHired() const {
+        return employed;
     }
     const string& Warrior::getName() const {
         return name;

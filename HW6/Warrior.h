@@ -13,19 +13,20 @@ namespace WarriorCraft{
     
     public:
     Warrior(const string& name, double strength);
-    void setIsHired(bool isHired);
-    void setIsDead(bool isDead);
+    void hiring();
+    void firing();
+    void killed();
     void setStrength(double strength);
     void runaway();
     void setNoble(Noble* noble);
-    bool getIsHired() const;
+    bool isHired() const;
     const string& getName() const;
     double getStrength() const;
 
     private:
     string name;
     double strength;
-    bool isHired;
+    bool employed;
     bool isDead;
     Noble* noble;
     };
