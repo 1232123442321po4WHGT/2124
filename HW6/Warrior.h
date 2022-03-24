@@ -3,11 +3,14 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
+//warrior header
+//adding onto the warriorcraft namespace, declaring a noble class and defining
+//warrior class
 namespace WarriorCraft{
     class Noble;
-
     class Warrior{
         friend ostream& operator<<(ostream& os, const Warrior& warrior);
     

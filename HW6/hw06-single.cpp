@@ -10,7 +10,7 @@ using namespace std;
 
 class Noble;
 
-//Warrior class
+//Warrior class header
 class Warrior{
     friend ostream& operator<<(ostream& os, const Warrior& warrior);
 
@@ -35,6 +35,7 @@ class Warrior{
     bool alive;
 };
 
+//noble class header
 class Noble{
     friend ostream& operator<<(ostream& os, const Noble& noble);
     
@@ -60,6 +61,8 @@ class Noble{
     void setStrengthLoser(Noble& noble);
     size_t warrFinder(Warrior& warrior);
 };
+
+//class methods
 
 Warrior::Warrior(const string& name, double strength): name(name), strength(strength), 
     employed(false), alive(true), noble(nullptr){}
@@ -241,6 +244,8 @@ void Noble::battle(Noble& noble){
     }
 }
 
+
+//main function
 int main() {
 	Noble art("King Arthur");
 	Noble lance("Lancelot du Lac");

@@ -2,8 +2,10 @@
 #include "Warrior.h"
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
+//warrior class method definitions under warriorcraft namespace
 namespace WarriorCraft{
     Warrior::Warrior(const string& name, double strength): name(name), strength(strength), 
         employed(false), alive(true), noble(nullptr){}

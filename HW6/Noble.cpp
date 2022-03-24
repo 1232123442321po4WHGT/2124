@@ -5,6 +5,8 @@
 #include <vector>
 using namespace std;
 
+
+//noble class method definitions under warriorcraft namespace
 namespace WarriorCraft{
     Noble::Noble(const string& name): name(name), strength(0), alive(true){}
     
