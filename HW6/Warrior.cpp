@@ -8,6 +8,10 @@ namespace WarriorCraft{
     Warrior::Warrior(const string& name, double strength): name(name), strength(strength), 
         employed(false), alive(true), noble(nullptr){}
 
+    ostream& operator<<(ostream& os, const Warrior& warrior){
+        os << warrior.name << " : " << warrior.strength;
+        return os;
+    }
     const string& Warrior::getName() const {
         return name;
     }
@@ -39,8 +43,5 @@ namespace WarriorCraft{
         noble->deleteWarr(*this);
     }
 
-    ostream& operator<<(ostream& os, const Warrior& warrior){
-        os << warrior.name << " : " << warrior.strength;
-        return os;
-    }
+
 }

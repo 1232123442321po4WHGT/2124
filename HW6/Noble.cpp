@@ -98,6 +98,7 @@ namespace WarriorCraft{
         idx = warrFinder(warrior);
 
         if(alive == false || idx == army.size()){
+            cout << "Couldn't fire the warrior!" << endl;
             return false;
         }
         else{
@@ -127,8 +128,8 @@ namespace WarriorCraft{
             cout << "He's dead, " << noble.getName() << endl;
         }
         else if(this->strength == enemyStrength){
-            cout << "Mutual annihilation: " << this->name << " and "
-            << noble.getName() << " die at each other's hands" << endl;
+            cout << "Mutual annihilation: " << this->name << " and ";
+            cout << noble.getName() << " die at each other's hands" << endl;
             setStrengthLoser(noble);
             setStrengthLoser(*this);
         }
