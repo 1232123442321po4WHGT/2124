@@ -6,6 +6,9 @@
 #include <vector>
 using namespace std;
 
+//noble header file
+//creating warriorcraft namespace, declaring warrior class 
+//and making noble class
 namespace WarriorCraft{
     class Warrior;
     class Noble{
